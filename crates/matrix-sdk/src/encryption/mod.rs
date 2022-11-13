@@ -227,7 +227,7 @@ impl Client {
     }
 
     #[cfg(feature = "e2e-encryption")]
-    pub(crate) async fn create_dm_room(
+    pub async fn create_dm_room(
         &self,
         user_id: OwnedUserId,
     ) -> Result<Option<room::Joined>> {
@@ -272,7 +272,7 @@ impl Client {
         if let Some(room) = self.get_joined_room(&response.room_id) {
             Ok(Some(room))
         } else {
-            self.inner.sync_beat.listen().wait_timeout(SYNC_WAIT_TIME);
+            self.inner.sync_beat.listen().await;
             Ok(self.get_joined_room(&response.room_id))
         }
     }
