@@ -226,7 +226,7 @@ impl Client {
     }
 
     #[cfg(feature = "e2e-encryption")]
-    pub(crate) async fn create_dm_room(&self, user_id: OwnedUserId) -> Result<room::Joined> {
+    pub async fn create_dm_room(&self, user_id: OwnedUserId) -> Result<room::Joined> {
         use ruma::{
             api::client::room::create_room::v3::RoomPreset, events::direct::DirectEventContent,
         };
